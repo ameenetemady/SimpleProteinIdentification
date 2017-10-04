@@ -109,15 +109,15 @@ def runOne(dicSetting):
 # Input: db.fasta, identification.tsv, ref.txt
 # Output: pred.csv
 # Note: Ensure Input files (with exact names) are copied under strDataDir directory apriori
-#strDataDir = sys.argv[1]
-#runOne(getDefaultSetting(strDataDir))
-runOne(getDefaultSetting("data/18mix"))
-runOne(getDefaultSetting("data/Sigma49"))
-runOne(getDefaultSetting("data/UPS2"))
-runOne(getDefaultSetting("data/DME"))
-runOne(getDefaultSetting("data/HumanEKC"))
-runOne(getDefaultSetting("data/HumanMD"))
-runOne(getDefaultSetting("data/Yeast"))
+strDataDir = sys.argv[1]
+runOne(getDefaultSetting(strDataDir))
+#runOne(getDefaultSetting("data/18mix"))
+#runOne(getDefaultSetting("data/Sigma49"))
+#runOne(getDefaultSetting("data/UPS2"))
+#runOne(getDefaultSetting("data/DME"))
+#runOne(getDefaultSetting("data/HumanEKC"))
+#runOne(getDefaultSetting("data/HumanMD"))
+#runOne(getDefaultSetting("data/Yeast"))
 
 
 
