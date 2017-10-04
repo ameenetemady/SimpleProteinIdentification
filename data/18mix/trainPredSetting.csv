@@ -1,0 +1,10 @@
+strBaseDir,data/18mix//sparseData
+strFilenameTarget,data/18mix//sparseData/target.csv
+strFilenameMetaInfo,data/18mix//sparseData/metaInfo.csv
+strFilenameProtInfo,data/18mix//pred.csv
+strFilenameExprDescription,data/18mix//pred.csv.desc
+strFilenameExprParams,data/18mix//pred.csv.params
+nRows,1329
+nArchId,24
+nFirstLayers,1
+nOutputPerColumn,5
