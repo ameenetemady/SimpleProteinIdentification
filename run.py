@@ -45,22 +45,22 @@ def loadProtPeptideDic(strFilePath, delimiter = "\t", protColId = 1, pepColId = 
                 protInfo = {}
                 protDic[strProt] = protInfo
 
-            protInfo[strPep] = True
+            protInfo[strPep] = 1
         
         return protDic, pepDic
 
 def updatePepProtMatchingCounts(protDic, pepDic):
     for strProt, protInfo in protDic.items():
-        for strPep, __ in protInfo.items():
-            pepDic[strPep][1] += 1
+        for strPep, nPepCount in protInfo.items():
+            pepDic[strPep][1] += nPepCount
 
 def getProtScores(protDic, pepDic):
     listProtScores = []
     for strProt, protInfo in protDic.items():
         dProtScore = 0
-        for strPep, __ in protInfo.items():
+        for strPep, nPepCount in protInfo.items():
             pepScoreScaled = pepDic[strPep][0]/pepDic[strPep][1]
-            dProtScore += pepScoreScaled
+            dProtScore += pepScoreScaled * nPepCount
         listProtScores.append([strProt, dProtScore])
 
     return listProtScores
@@ -79,8 +79,14 @@ def saveProtScores(listProtScores, strFilename):
 def trimPeps(protInfo, seq):
     pepsToDel = []
     for strPep, __ in protInfo.items():
-        if seq.find(strPep) < 0:
+        nCount = seq.count_overlap(strPep)
+        if nCount <= 0:
             pepsToDel.append(strPep)
+        else:
+            protInfo[strPep] = nCount
+        
+        #if nCount > 1:
+        #    print('{!s}: {:d}'.format(strPep, nCount) )
 
     for strPep in pepsToDel:
         del protInfo[strPep]
@@ -109,15 +115,15 @@ def runOne(dicSetting):
 # Input: db.fasta, identification.tsv, ref.txt
 # Output: pred.csv
 # Note: Ensure Input files (with exact names) are copied under strDataDir directory apriori
-strDataDir = sys.argv[1]
-runOne(getDefaultSetting(strDataDir))
-#runOne(getDefaultSetting("data/18mix"))
-#runOne(getDefaultSetting("data/Sigma49"))
-#runOne(getDefaultSetting("data/UPS2"))
-#runOne(getDefaultSetting("data/DME"))
-#runOne(getDefaultSetting("data/HumanEKC"))
-#runOne(getDefaultSetting("data/HumanMD"))
-#runOne(getDefaultSetting("data/Yeast"))
+#strDataDir = sys.argv[1]
+#runOne(getDefaultSetting(strDataDir))
+runOne(getDefaultSetting("data/18mix"))
+runOne(getDefaultSetting("data/Sigma49"))
+runOne(getDefaultSetting("data/UPS2"))
+runOne(getDefaultSetting("data/DME"))
+runOne(getDefaultSetting("data/HumanEKC"))
+runOne(getDefaultSetting("data/HumanMD"))
+runOne(getDefaultSetting("data/Yeast"))
 
 
 
