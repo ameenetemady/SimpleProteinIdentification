@@ -5,7 +5,7 @@
 * [biopython](http://biopython.org/wiki/Download)
 
 ### Installation
-git clone https://github.com/ameenetemady/H
+git clone https://github.com/ameenetemady/SimpleProteinIdentification
 
 ### Running
 * Step1: prepare a directory containing your input files (with exact names):
